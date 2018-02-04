@@ -35,6 +35,6 @@ link: ${BUILD_DIR}/${APP_NAME}
 ${BUILD_DIR}/${APP_NAME}: ${DEPENDENCY_FILES} ${OBJECT_FILES}
 	${CC} ${CFLAGS} -o ${BUILD_DIR}/${APP_NAME} ${OBJECT_FILES}
 
-${BUILD_DIR}/%.d : %.cpp ${HEADER_FILES}
+${BUILD_DIR}/%.d : %.cpp
 	@mkdir -p "$(dir $@)"
-	${CC} -MM $< -MT '$${BUILD_DIR}/$(patsubst %.cpp,%.o,$<)' -MF $@
+	${CC} -MM $< -MT '$${BUILD_DIR}/$(patsubst %.cpp,%.o,$<) $${BUILD_DIR}/$(patsubst %.cpp,%.d,$<)' -MF $@
