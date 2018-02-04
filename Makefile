@@ -1,6 +1,6 @@
 CC=g++
 CFLAGS=-I.
-APP_NAME=sorter
+APP_NAME=app
 BUILD_DIR=build
 
 HEADER_FILES=$(wildcard *.h) $(wildcard **/*.h)
