@@ -3,8 +3,10 @@ CFLAGS=-I.
 APP_NAME=app
 BUILD_DIR=build
 
-HEADER_FILES=$(wildcard *.h) $(wildcard **/*.h)
-BODY_FILES=$(wildcard *.cpp) $(wildcard **/*.cpp)
+rwildcard=$(wildcard $1$2) $(foreach d,$(wildcard $1*),$(call rwildcard,$d/,$2))
+
+HEADER_FILES=$(call rwildcard,,*.h)
+BODY_FILES=$(call rwildcard,,*.cpp)
 
 SOURCE_FILES=${HEADER_FILES} ${BODY_FILES}
 BODY_BASE_NAMES=$(basename ${BODY_FILES} .cpp)
